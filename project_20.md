@@ -16,3 +16,5 @@ Let's Begin.
 ## MySQL in Container
 
 Let us start assembling the application from the backend Database layer – we will use a pre-built MySQL database container, configure it, and make sure it is ready to receive requests from the frontend PHP application.
+
+Step 1: Pull MySQL Docker Image from [Docker Hub Registry](https://hub.docker.com/)
