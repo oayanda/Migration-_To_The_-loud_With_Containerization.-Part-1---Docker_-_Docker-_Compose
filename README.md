@@ -1,1 +1,3 @@
-# Migration_To_The_Cloud_With_Containerization_Part_One_Docker_Docker_Compose
+# Migration To The Cloud With Containerization
+
+In this project, we will be deploying a simple PHP-based web containerized solution backed by a MySQL database application using Docker.

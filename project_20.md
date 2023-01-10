@@ -1,6 +1,6 @@
 # MIGRATION TO THE СLOUD WITH CONTAINERIZATION
 
-In this project, we will be deploying a simple PHP-based web solution backed by a MySQL database application using Docker.
+In this project, we will be deploying a simple PHP-based web containerized solution backed by a MySQL database application using Docker.
 
 [Docker](https://docs.docker.com/get-started/overview/) is an open source platform for shipping, developing and running application on any OS running a docker engine. It is fast, takes less space than VMs and can be distributed or shipped as a Docker image.
 
