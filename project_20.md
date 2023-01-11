@@ -23,11 +23,18 @@ Step 1: Pull MySQL Docker Image from [Docker Hub Registry](https://hub.docker.co
 - In the termainal, 
 
 ```bash
-# search the available MySQl docker image in the docker hub registry
+# Search for the available MySql docker image in the docker hub registry
  
  docker search mysql
  ```
 
  ![docker search](./images/1.png)
 
-- We will use the first one on the list, which is the offical version.
+- We will pull the first on the list, which is the offical version and made available in docker build cache.
+
+```bash
+docker pull mysql
+```
+
+![docker image pull](./images/2.png)
+
