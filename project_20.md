@@ -30,14 +30,27 @@ In the termainal,
 
  ![docker search](./images/1.png)
 
-Next, we will pull the first on the list, which is the offical version and made available in docker build cache.
+Next, we will pull the first on the list, which is the offical and latest version and stored in the docker build cache locally.
 
 ```bash
+# Download docker image locally from docker hub
 docker pull mysql
 ```
 
 ![docker image pull](./images/2.png)
 
+We made this *pull* to make our container creation process faster. Otherwise, skip *step on*e and move to *step two*, which does the samething.
+
 Step 2: Deploy the MySQL Container to your Docker Engine
 
 Once you have the docker image, move on to deploy a new MySQL container
+
+```bash
+# Create a mysql container
+docker run --name=mysqldb -e MYSQL_ROOT_PASSWORD=dontusethisinprod -d mysql
+
+# List all running containers
+docker ps -a
+```
+
+![Mysql container](./images/3.png)
