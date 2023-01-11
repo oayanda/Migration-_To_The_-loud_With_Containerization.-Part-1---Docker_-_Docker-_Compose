@@ -139,3 +139,7 @@ docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql
 ![private](./images/8.png)
 
 ## Prepare Database Schema
+
+Now you need to prepare a database schema so that the Tooling application can connect to it.
+
+Clone the Tooling-app repository from [here](https://github.com/oayanda/tooling-1)
