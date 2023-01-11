@@ -8,7 +8,7 @@ In this project, we will be deploying a simple PHP-based web containerized solut
 
 **Prerequiste**
 
-- [docker desktop](https://docs.docker.com/desktop/) is installed on your computer.
+- [Docker desktop](https://docs.docker.com/desktop/) is installed on your computer.
 - Basic understanding of docker and containers.
 - Basic Linux understanding will be helpful.
 
@@ -20,7 +20,7 @@ Let us start assembling the application from the backend Database layer – we w
 
 Step 1: Pull MySQL Docker Image from [Docker Hub Registry](https://hub.docker.com/)
 
-- In the termainal, 
+In the termainal, 
 
 ```bash
 # Search for the available MySql docker image in the docker hub registry
@@ -30,7 +30,7 @@ Step 1: Pull MySQL Docker Image from [Docker Hub Registry](https://hub.docker.co
 
  ![docker search](./images/1.png)
 
-- We will pull the first on the list, which is the offical version and made available in docker build cache.
+Next, we will pull the first on the list, which is the offical version and made available in docker build cache.
 
 ```bash
 docker pull mysql
