@@ -25,7 +25,7 @@ In the termainal,
 ```bash
 # Search for the available MySql docker image in the docker hub registry
  
- docker search mysql
+ docker search mysql-server
  ```
 
  ![docker search](./images/1.png)
@@ -34,7 +34,7 @@ Next, we will pull the first on the list, which is the offical and latest versio
 
 ```bash
 # Download docker image locally from docker hub
-docker pull mysql
+docker pull mysql/mysql-server:latest
 ```
 
 ![docker image pull](./images/2.png)
@@ -47,7 +47,8 @@ Once you have the docker image, move on to deploy a new MySQL container
 
 ```bash
 # Create a mysql container
-docker run --name=mysqldb -e MYSQL_ROOT_PASSWORD=dontusethisinprod -d mysql
+docker run --name=mysqldb -e MYSQL_ROOT_PASSWORD=dontusethisinprod -d mysql/mysql-server:latest
+
 
 # List all running containers
 docker ps -a
@@ -69,6 +70,72 @@ docker exec -it mysqldb mysql -uroot -p
 
 ![mysql](./images/4.png)
 
+We are going to use the second method below, so go ahead remove this container.
+
+```bash
+docker rm -f <your-container-name>
+```
+
 **_Second Method_**
 
-After connecting to the MySql container, we could go on can configure the schema and prepare it for the Frontend PHP application but this means we will be using the default bridge network. However, it better to create our own private network which enable us to control the network cidr.
+After connecting to the MySql container, we could go on can configure the schema and prepare it for the Frontend PHP application but this means we will be using the default bridge network which is the defualt way for connection for all containers. However, it better to create our own private network which enable us to control the network cidr.
+
+Let's go ahead and create a network
+
+```bash
+# Create a new bridge network
+
+docker network create --subnet=172.15.10.0/24 tooling_app_network
+```
+
+![private](./images/5.png)
+
+This time, let us create an environment variable to store the root password:
+
+```bash
+# Save the password using environment variable
+export MYSQL_PW=password
+
+# verify the environment variable is created
+echo $MYSQL_PW
+```
+
+> If you are using Window OS, run above command in your git bash terminal whicj comes with visual studio code editor.
+
+![private](./images/6.png)
+
+To avoid name conflit, remember to remove the initial contianer as stated above.Now, pull the image and run the container, all in one command like this below
+
+```bash
+docker run --network tooling_app_network -h mysqlserverhost --name=mysql-server -e MYSQL_ROOT_PASSWORD=$MYSQL_PW  -d mysql/mysql-server:latest
+```
+
+_Flags used_
+
+- -d runs the container in detached mode
+- --network connects a container to a network
+- -h specifies a hostname
+
+![private](./images/7.png)
+
+It is best practice not to connect to the MySQL server remotely using the root user. Therefore, we will create an SQL script that will create a user we can use to connect remotely.
+
+Create a file and name it ***create_user.sql*** and add the below code in the file
+
+ ```bash
+ CREATE USER '<username>'@'%' IDENTIFIED BY '<password>'; 
+ GRANT ALL PRIVILEGES ON * . * TO '<username>'@'%';
+ ```
+
+ Replace the username and password to your values.
+
+![private](./images/script.png)
+
+Nnow, run the script to create the new user. Enure you are in the directory ***create_user.sql*** file is located.  
+
+```bash
+docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql
+```
+![private](./images/8.png)
+
+## Prepare Database Schema
