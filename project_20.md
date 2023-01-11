@@ -54,3 +54,21 @@ docker ps -a
 ```
 
 ![Mysql container](./images/3.png)
+
+## CONNECTING TO THE MYSQL DOCKER CONTAINER
+
+Now, let's connect to the mysql container directly
+
+_**First Method**_
+
+```bash
+# Connect to the mysql database and enter the from the initial step.
+
+docker exec -it mysqldb mysql -uroot -p
+```
+
+![mysql](./images/4.png)
+
+**_Second Method_**
+
+After connecting to the MySql container, we could go on can configure the schema and prepare it for the Frontend PHP application but this means we will be using the default bridge network. However, it better to create our own private network which enable us to control the network cidr.
