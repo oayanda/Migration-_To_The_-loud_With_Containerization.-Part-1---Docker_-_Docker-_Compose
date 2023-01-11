@@ -8,9 +8,10 @@ In this project, we will be deploying a simple PHP-based web containerized solut
 
 **Prerequiste**
 
-- 
-- 
-- 
+- You already have [docker desktop](https://docs.docker.com/desktop/) installed on your computer
+- You have basic understanding of docker and containers
+- Basic Linux understanding will be helpful
+
 Let's Begin.
 
 ## MySQL in Container
@@ -18,3 +19,15 @@ Let's Begin.
 Let us start assembling the application from the backend Database layer – we will use a pre-built MySQL database container, configure it, and make sure it is ready to receive requests from the frontend PHP application.
 
 Step 1: Pull MySQL Docker Image from [Docker Hub Registry](https://hub.docker.com/)
+
+- In the termainal, 
+
+```bash
+# search the available MySQl docker image in the docker hub registry
+ 
+ docker search mysql
+ ```
+
+ ![docker search](./images/1.png)
+
+- We will use the first one on the list, which is the offical version.
