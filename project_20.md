@@ -8,9 +8,9 @@ In this project, we will be deploying a simple PHP-based web containerized solut
 
 **Prerequiste**
 
-- You already have [docker desktop](https://docs.docker.com/desktop/) installed on your computer
-- You have basic understanding of docker and containers
-- Basic Linux understanding will be helpful
+- [docker desktop](https://docs.docker.com/desktop/) is installed on your computer.
+- Basic understanding of docker and containers.
+- Basic Linux understanding will be helpful.
 
 Let's Begin.
 
@@ -38,3 +38,6 @@ docker pull mysql
 
 ![docker image pull](./images/2.png)
 
+Step 2: Deploy the MySQL Container to your Docker Engine
+
+Once you have the docker image, move on to deploy a new MySQL container
