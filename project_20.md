@@ -11,6 +11,7 @@ In this project, you will be deploying a simple PHP-based youb containerized sol
 - [Docker desktop](https://docs.docker.com/desktop/) is installed on your computer.
 - Basic understanding of docker and containers.
 - Basic Linux understanding will be helpful.
+- AWS freeier 
 
 Let's Begin.
 
@@ -142,7 +143,7 @@ docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql
 
 Now, you need to prepare a database schema so that the Tooling application can connect to it.
 
-1. Clone the Tooling-app repository from [here](https://github.com/oayanda/tooling-1)
+Clone the Tooling-app repository from [here](https://github.com/oayanda/tooling-1)
 
 ```bash
 git clone https://github.com/oayanda/tooling-1
@@ -166,4 +167,50 @@ docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < ~/tooling-1/html/tooling_
 
 ![private](./images/11.png)
 
-Update the .env file with connection details to the database
+Next, you need to update the ```.env``` file with connection details to the database
+The `.env` file is located in the html ```~/tooling/html/```
+
+```bash
+# View the location of the file
+ls la ~/tooling/html/
+```
+
+![private](./images/12.png)
+
+Let's update the connection to the database using the `vi` editor
+
+```bash
+vi ~/tooling-1/html/.env
+```
+
+![private](./images/13.png)
+
+***Flags used:***
+
+- MYSQL_IP mysql ip address "leave as mysqlserverhost"
+- MYSQL_USER mysql username for user export as environment variable
+- MYSQL_PASS mysql password for the user exported as environment varaible
+- MYSQL_DBNAME mysql databse name "toolingdb"
+
+Run the Tooling App
+
+You are almost there. Now you need to containerized the Frontend Application as well and then connect it to the Mysql database.
+
+However, as you now know that you need a Dock image to create a `Container` but you need a `Dockerfile` to create a `Docker image`. In the cloned tooling application repo you now have on system is a Dockerfile which you going to used to build the docker image.
+
+> Ensure you are inside the directory "tooling" that has the file Dockerfile and build your container.
+
+```bash 
+docker build . -t tooling.0.1
+```
+
+In the above command, we specify a parameter `-t`, so that the image can be tagged "`tooling.0.1`" - Also, you have to notice the `.` at the end. This is important as that tells Docker to locate the `Dockerfile` in the current directory you are running the command. Otherwise, you would need to specify the absolute path to the `Dockerfile`
+
+![private](./images/14.png)
+
+Run the container
+
+```bash
+docker run --network tooling_app_network -p 8085:80 -it tooling.0.1 
+```
+
