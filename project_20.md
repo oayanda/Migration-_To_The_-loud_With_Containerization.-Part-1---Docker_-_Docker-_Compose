@@ -8,10 +8,10 @@ In this project, you will be deploying a simple PHP-based youb containerized sol
 
 **Prerequiste**
 
-- [Docker desktop](https://docs.docker.com/desktop/) is installed on your computer.
+- [Docker](https://docs.docker.com/engine/install/ubuntu/) is installed on your ubuntu instance .
 - Basic understanding of docker and containers.
 - Basic Linux understanding will be helpful.
-- AWS freeier 
+- [AWS free tier here](https://aws.amazon.com/free/)
 
 Let's Begin.
 
