@@ -67,6 +67,9 @@ _**First Method**_
 # Connect to the mysql database and enter the from the initial step.
 
 docker exec -it mysqldb mysql -uroot -p
+
+# Exit the mysql mode
+exit
 ```
 
 ![mysql](./images/4.png)
@@ -74,7 +77,7 @@ docker exec -it mysqldb mysql -uroot -p
 You are going to use the second method below, so go ahead remove this container.
 
 ```bash
-docker rm -f <your-container-name>
+docker rm -f mysqldb
 ```
 
 **_Second Method_**
@@ -86,7 +89,7 @@ Let's go ahead and create a network
 ```bash
 # Create a new bridge network
 
-docker network create --subnet=172.15.10.0/24 tooling_app_network
+docker network create --subnet=172.18.0.0/24 tooling_app_network
 ```
 
 ![private](./images/5.png)
@@ -154,7 +157,7 @@ git clone https://github.com/oayanda/tooling-1
 You can find the schema in tooling PHP application repo.
 
 ```bash
-ls ~/tooling-1/html/tooling_db_schema.sql
+ls ~/tooling-1/html/
 ```
 
 ![private](./images/9.png)
@@ -192,6 +195,10 @@ vi ~/tooling-1/html/.env
 - MYSQL_PASS mysql password for the user exported as environment varaible
 - MYSQL_DBNAME mysql databse name "toolingdb"
 
+Update the `servername`, `username`, `password`& `databasename` in `db_conn.php` file in `tooling/html` directory
+
+![private](./images/15.png)
+
 Run the Tooling App
 
 You are almost there. Now you need to containerized the Frontend Application as well and then connect it to the Mysql database.
@@ -201,7 +208,7 @@ However, as you now know that you need a Dock image to create a `Container` but 
 > Ensure you are inside the directory "tooling" that has the file Dockerfile and build your container.
 
 ```bash 
-docker build . -t tooling.0.1
+docker build -t tooling:0.0.1 .
 ```
 
 In the above command, we specify a parameter `-t`, so that the image can be tagged "`tooling.0.1`" - Also, you have to notice the `.` at the end. This is important as that tells Docker to locate the `Dockerfile` in the current directory you are running the command. Otherwise, you would need to specify the absolute path to the `Dockerfile`
@@ -211,6 +218,16 @@ In the above command, we specify a parameter `-t`, so that the image can be tagg
 Run the container
 
 ```bash
-docker run --network tooling_app_network -p 8085:80 -it tooling.0.1 
+docker run --network tooling_app_network -p 8085:80 -it tooling:0.0.1 
 ```
 
+![private](./images/16.png)
+
+Ensure to allow port 8085 for a TCP connection in your secuirty group.
+
+![private](./images/17.png)
+
+View the login page in browser
+![private](./images/18.png)
+
+The default email is test@gmail.com, the password is 12345
