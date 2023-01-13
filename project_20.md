@@ -17,7 +17,7 @@ Let's Begin.
 
 ## MySQL in Container
 
-Let us start assembling the application from the backend Database layer – you will use a pre-built MySQL database container, configure it, and make sure it is ready to receive requests from the frontend PHP application.
+Let us start assembling the application from the backend Database layer – we will use a pre-built MySQL database container, configure it, and make sure it is ready to receive requests from the frontend PHP application.
 
 Step 1: Pull MySQL Docker Image from [Docker Hub Registry](https://hub.docker.com/)
 
@@ -31,7 +31,7 @@ In the termainal,
 
  ![docker search](./images/1.png)
 
-Next, you will pull the first on the list, which is the offical and latest version and stored in the docker build cache locally.
+Next, we will pull the first on the list, which is the offical and latest version and stored in the docker build cache locally.
 
 ```bash
 # Download docker image locally from docker hub
@@ -44,7 +44,7 @@ You made this *pull* to make the container creation process faster. Otherwise, s
 
 Step 2: Deploy the MySQL Container to your Docker Engine
 
-Once you have the docker image, move on to deploy a new MySQL container
+Once we have the docker image, move on to deploy a new MySQL container
 
 ```bash
 # Create a mysql container
@@ -57,7 +57,7 @@ docker ps -a
 
 ![Mysql container](./images/3.png)
 
-## CONNECTING TO THE MYSQL DOCKER CONTAINER
+## Connecting to MYSQL Docker Container
 
 Now, let's connect to the mysql container directly
 
@@ -82,7 +82,7 @@ docker rm -f mysqldb
 
 **_Second Method_**
 
-After connecting to the MySql container, you could go on can configure the schema and prepare it for the Frontend PHP application but this means you will be using the default bridge network which is the defualt way for connection for all containers. However, it better to create our own private network which enable us to control the network cidr.
+After connecting to the MySql container, we could go on can configure the schema and prepare it for the Frontend PHP application but this means we will be using the default bridge network which is the defualt way for connection for all containers. However, it better to create our own private network which enable us to control the network cidr.
 
 Let's go ahead and create a network
 
@@ -104,7 +104,7 @@ export MYSQL_PW=password
 echo $MYSQL_PW
 ```
 
-> If you are using Window OS, run above command in your git bash terminal whicj comes with visual studio code editor.
+> If you are using Window OS, run above command in your git bash terminal which comes with visual studio code editor.
 
 ![private](./images/6.png)
 
@@ -122,7 +122,7 @@ _Flags used_
 
 ![private](./images/7.png)
 
-It is best practice not to connect to the MySQL server remotely using the root user. Therefore, you will create a SQL script that will create a user you can use to connect remotely.
+It is best practice not to connect to the MySQL server remotely using the root user. Therefore, we will create a SQL script that will create a user we can use to connect remotely.
 
 Create a file and name it ***create_user.sql*** and add the below code in the file
 
@@ -135,11 +135,12 @@ Create a file and name it ***create_user.sql*** and add the below code in the fi
 
 ![private](./images/script.png)
 
-Now, run the script to create the new user. Enure you are in the directory ***create_user.sql*** file is located.  
+Now, run the script to create the new user. Ensure you are in the directory ***create_user.sql*** file is located.  
 
 ```bash
 docker exec -i mysql-server mysql -uroot -p$MYSQL_PW < create_user.sql
 ```
+
 ![private](./images/8.png)
 
 ## Prepare Database Schema
