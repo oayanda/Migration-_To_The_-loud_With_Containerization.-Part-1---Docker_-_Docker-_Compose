@@ -232,3 +232,43 @@ View the login page in browser
 ![private](./images/18.png)
 
 The default email is test@gmail.com, the password is 12345
+
+
+## ADDITIONAL TASK
+
+Write a Dockerfile for the TODO app
+View Dockerfile Here
+Run both database and app on your laptop Docker Engine
+
+![private](./images/21.png)
+Access the application from the browser
+![private](./images/20.png)
+
+**Part 2**
+
+Create an account in Docker Hub
+
+After creating an account on `docker hub`, come to your terminal and enter `docker login` followed the prompt and enter your `username` and `password`.
+
+![private](./images/22.png)
+
+Create the docker image
+In the application directory, create your docker image
+
+```bash
+docker build . -t oayanda/laravel-todo:0.0..1
+```
+
+![private](./images/23.png)
+
+Next, push the docker images from your PC to your docker repository
+
+```bash
+docker push oayanda/laravel_todo:0.0.1
+```
+
+![private](./images/24.png)
+
+Verify in docker hub
+
+![private](./images/25.png)
