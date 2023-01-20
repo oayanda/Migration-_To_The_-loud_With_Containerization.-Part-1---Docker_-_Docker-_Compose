@@ -238,6 +238,8 @@ The default email is test@gmail.com, the password is 12345
 
 Write a Dockerfile for the TODO app
 View Dockerfile Here
+Update the .env file with database connection details
+
 Run both database and app on your laptop Docker Engine
 
 ![private](./images/21.png)
@@ -272,3 +274,35 @@ docker push oayanda/laravel_todo:0.0.1
 Verify in docker hub
 
 ![private](./images/25.png)
+
+CI/CD  docker Image
+
+Write a Jenkinsfile that will simulate a Docker Build and a Docker Push to the registry
+
+Connect your repo to Jenkins
+
+Add a webhook to github repo
+
+- Click on `Setting` and select `Webhooks`, click on `Add webhook` and add the `<jekins URL>/github-webhook/`
+- Content type: `application/json` and select j`ust the push event` and active.
+
+![private](./images/26.png)
+
+Create a multi-branch pipeline
+
+- Install Blue Ocean plugin and Open it dashboard
+- Add your Docker login credentials in `Manage Credentials` in  Jenkins
+- Select create `New pipeline`
+- Select `Github` and your `Github account`
+- Select the repo for the pipeline
+- Select `create pipeline`
+
+![private](./images/27.png)
+
+Jenkins automatially picks the Jenkinsfile in the repo and runs the multi pipeline.
+
+![private](./images/28.png)
+
+Create additional feature and verify that the images pushed from the CI can be found at the registry.
+
+![private](./images/29.png)
