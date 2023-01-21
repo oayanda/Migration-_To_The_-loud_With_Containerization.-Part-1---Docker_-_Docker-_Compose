@@ -343,3 +343,14 @@ docker compose -f tooling.yaml  up -d
 ```
 
   ![private](./images/30.png)
+
+ Tags n the Compose file tooling.yaml
+
+- `Services`: Computing components of an application and communicate with each other through Networks.
+- `Links` defines a network link to containers in another service. Either specify both the service name and a link alias (SERVICE:ALIAS), or just the service name.
+- `Volumes`: section allows the configuration of named volumes that can be reused across multiple services.
+
+
+Update your Jenkinsfile with a test stage before pushing the image to the registry.
+
+  ![private](./images/31.png)
