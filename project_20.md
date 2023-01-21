@@ -306,3 +306,40 @@ Jenkins automatially picks the Jenkinsfile in the repo and runs the multi pipeli
 Create additional feature and verify that the images pushed from the CI can be found at the registry.
 
 ![private](./images/29.png)
+
+Deployment Tooling Application with Docker Compose
+
+Create a tooling.yml file
+
+```bash
+version: "3.9"
+services:
+  tooling_frontend:
+    build: .
+    ports:
+      - "5000:80"
+    volumes:
+      - tooling_frontend:/var/www/html
+    links:
+      - db
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: <The database name required by Tooling app >
+      MYSQL_USER: <The user required by Tooling app >
+      MYSQL_PASSWORD: <The password required by Tooling app >
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  tooling_frontend:
+  db:
+  ```
+
+```bash
+# Run docker compose file
+docker compose -f tooling.yaml  up -d 
+```
+
+  ![private](./images/30.png)
